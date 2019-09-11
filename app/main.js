@@ -7,7 +7,7 @@ import store from './store';
 
 ReactDOM.render(
 	<Provider store={store}>
-		<div>Hello World!!</div>, 
-        document.getElementById('app')
-	</Provider>
+		<div>Hello World!!</div>
+	</Provider>,
+	document.getElementById('app')
 );
