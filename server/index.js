@@ -1,6 +1,7 @@
 //Entry Point for server
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
+const volleyball = require('volleyball')
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -10,11 +11,17 @@ const passport = require('passport');
 const User = require('./db/User')
 
 const app = express();
+
+if (process.env.NODE_ENV === 'development') {
+	require('./localSecrets'); // this will mutate the process.env object with your secrets.
+}
+
 const dbStore = new SequelizeStore({ db: db });
 dbStore.sync();
 
 // Logging middleware
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
+app.use(volleyball)
 
 // Static middleware
 app.use(express.static(path.join(__dirname, '../public')));
@@ -51,6 +58,7 @@ passport.deserializeUser((id, done) => {
 
 // Matches all requests to /api
 app.use('/api', require('./api'));
+app.use('/auth', require('./auth'));
 
 // Sends user to index.html for requets that don't match api routes
 app.get('*', (req, res) => {

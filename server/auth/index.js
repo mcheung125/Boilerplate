@@ -45,4 +45,6 @@ router.delete('/logout', (req, res, next) => {
 	res.sendStatus(204);
 });
 
+router.use('/google', require('./google'))
+
 module.exports = router;
