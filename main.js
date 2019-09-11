@@ -1,5 +1,5 @@
 const app = require('./server');
-const db = require('./server/db/db.js');
+const db = require('./server/db/db');
 
 // Server
 const port = process.env.PORT || 3000;
