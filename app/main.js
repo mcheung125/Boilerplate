@@ -1,5 +1,5 @@
 // Entry Point for client
-
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
